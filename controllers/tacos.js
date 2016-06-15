@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
   db.taco.findAll().then(function(tacos) {
     res.render('tacos/index', {tacos: tacos});
   }).catch(function(err) {
-    res.render('error');
+    res.status(500).render('error');
   });
 });
 
@@ -22,7 +22,7 @@ router.get('/:id/edit', function(req, res) {
       res.render('error');
     }
   }).catch(function(err) {
-    res.render('error');
+    res.status(500).render('error');
   });
 });
 
@@ -34,7 +34,7 @@ router.get('/:id', function(req, res) {
       res.render('error');
     }
   }).catch(function(err) {
-    res.render('error');
+    res.status(500).render('error');
   });
 });
 
@@ -45,10 +45,10 @@ router.put('/:id', function(req, res) {
         res.send({msg: 'success'});
       });
     } else {
-      res.render('error');
+      res.status(404).send({msg: 'error'});
     }
   }).catch(function(err) {
-    res.send({msg: 'error'});
+    res.status(500).send({msg: 'error'});
   });
 });
 
@@ -59,10 +59,10 @@ router.delete('/:id', function(req, res) {
         res.send({msg: 'success'});
       });
     } else {
-      res.render('error');
+      res.status(404).send({msg: 'error'});
     }
   }).catch(function(err) {
-    res.send({msg: 'error'});
+    res.status(500).send({msg: 'error'});
   });
 });
 
@@ -70,7 +70,7 @@ router.post('/', function(req, res) {
   db.taco.create(req.body).then(function(taco) {
     res.redirect('/tacos');
   }).catch(function(err) {
-    res.render('error');
+    res.status(500).render('error');
   });
 });
 
