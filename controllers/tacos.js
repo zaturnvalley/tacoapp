@@ -19,7 +19,7 @@ router.get('/:id/edit', function(req, res) {
     if (taco) {
       res.render('tacos/edit', {taco: taco});
     } else {
-      res.render('error');
+      res.status(404).render('error');
     }
   }).catch(function(err) {
     res.status(500).render('error');
@@ -31,7 +31,7 @@ router.get('/:id', function(req, res) {
     if (taco) {
       res.render('tacos/show', {taco: taco});
     } else {
-      res.render('error');
+      res.status(404).render('error');
     }
   }).catch(function(err) {
     res.status(500).render('error');
